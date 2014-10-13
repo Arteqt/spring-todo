@@ -1,7 +1,5 @@
 package com.example.todo.dao;
 
-import java.util.List;
-
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -9,10 +7,11 @@ import org.springframework.stereotype.Repository;
 import com.example.todo.models.User;
 
 @Repository("UserDAO")
-public class UserDAOImpl implements UserDAO{
+public class UserDAOImpl implements UserDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
+
 	@Override
 	public void persistUser(User user) {
 		sessionFactory.getCurrentSession().persist(user);
@@ -26,20 +25,22 @@ public class UserDAOImpl implements UserDAO{
 	@Override
 	public void updateUser(User user) {
 		sessionFactory.getCurrentSession().update(user);
-		
+
 	}
 
 	@Override
 	public void deleteUser(User user) {
 		sessionFactory.getCurrentSession().delete(user);
-		
+
 	}
-	@SuppressWarnings("unchecked")
-    @Override
-    public List<User> listUsers() {
-        List<User> userList = sessionFactory.getCurrentSession().createQuery("from USER").list();
-        return userList;
-	}
-	
-	
+
+	/*@SuppressWarnings("unchecked")
+	@Override
+	public List<User> listUsers() {
+		Session session = sessionFactory.openSession();
+		List<User> userList = session.createQuery("from USER").list();
+		session.close();
+		return userList;
+	}*/
+
 }

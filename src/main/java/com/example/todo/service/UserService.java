@@ -1,7 +1,5 @@
 package com.example.todo.service;
 
-import java.util.List;
-
 import com.example.todo.models.User;
 
 public interface UserService {
@@ -10,5 +8,5 @@ public interface UserService {
 	User findUserById(String id);
 	void updateUser(User user);
 	void deleteUser(User user);
-	public List<User> listUsers();
+	//public List<User> listUsers();
 }

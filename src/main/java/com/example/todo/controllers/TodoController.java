@@ -31,7 +31,7 @@ public class TodoController {
 	public String create(Todo todoBean, Model model) {
 
 		todoService.createTodo(todoBean);
-		model.addAttribute("message", "Todo created");
+		model.addAttribute("todo", "Todo created");
 
 		return "showMessage";
 	}

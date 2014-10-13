@@ -1,7 +1,5 @@
 package com.example.todo.controllers;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,36 +11,36 @@ import com.example.todo.models.Message;
 import com.example.todo.service.MessageService;
 
 @Controller
-@RequestMapping(value = "/messages")
+@RequestMapping(value = "/inbox")
 public class MessageController {
 	@Autowired
 	private MessageService messageService;
-	
+
 	@RequestMapping(method = RequestMethod.GET)
-	public String list(Model model){
+	public String list(Model model) {
 		model.addAttribute("message", new Message());
-		return "showMessage";
+		return "inboxPage";
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST)
-	public String create(Message messageBean, Model model){
+	public String create(Message messageBean, Model model) {
 		messageService.persistMessage(messageBean);
-		model.addAttribute("message", "User created");
-		return "showMessage";
+		model.addAttribute("message", "Message created");
+		return "inboxPage";
 	}
-	
+
 	@ModelAttribute("messageBean")
-	public Message createFormBean(){
+	public Message createFormBean() {
 		return new Message();
 	}
-	
-	@ModelAttribute("messages")
-	public List<Message> getMessages(){
+
+	/*@ModelAttribute("messages")
+	public List<Message> getMessages() {
 		return messageService.listMessages();
-	}
-	
+	}*/
+
 	@ModelAttribute("messagebyid")
-	public Message getMessageById(String id){
+	public Message getMessageById(String id) {
 		return messageService.findMessageById(id);
 	}
 }
